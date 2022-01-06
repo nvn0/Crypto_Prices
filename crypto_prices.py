@@ -176,7 +176,7 @@ while opc != "exit":
         list()
     elif opc == "3":
         os.system(clear_command)
-        print("List of Cryptos")
+        print("Search an asset")
         search_asset()
     elif opc == "4":
         os.system(clear_command)
