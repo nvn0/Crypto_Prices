@@ -4,6 +4,7 @@ from colorama import Back, Fore, Style
 import platform
 import os
 import sys
+import time
 
 
 
@@ -26,6 +27,9 @@ result = public_client.get_products()
 
 def Crypto_prices():
 
+    localtime = time.localtime()
+    time_now = time.strftime("%H:%M:%S", localtime)
+    print("\nHour:",time_now)
 
     BTC_price = public_client.get_product_ticker('BTC-EUR')
     print(Fore.YELLOW + "\nBTC:", BTC_price['price'], "€")
@@ -70,6 +74,8 @@ def list():
         print(row['id'])
 
 
+
+
     opc3 = ""
     while opc3 != "exit":
 
@@ -87,13 +93,27 @@ def list():
 
 def search_asset():
 
-    x = input("Digit the name of the asset: ")
+    asst = input("Digit the name of the asset(Ex: btc-eur): ")
 
-    X_price = public_client.get_currencies()
+    #X_price = public_client.get_currencies()
 
-    for x in X_price:
-        print(x)
+    X_price = public_client.get_product_ticker(asst)
+    print(X_price)
+
+
+    # for x in X_price:
+    #     print(x)
     #print("BCH:", X_price['price'], "€")
+
+    opc4 = ""
+    while opc4 != "exit":
+
+        opc4 = input("\n>_: ")
+
+        if opc4 == "exit":
+            print("A sair...")
+        elif opc4 == "000":  # Secret command
+            sys.exit()
 
 
 
@@ -107,6 +127,8 @@ def last_trades():
     print(f"\nThe last {num_trades} trades")
     for s in range(num_trades):
         print(next(lasttrades))
+
+
 
 
 
