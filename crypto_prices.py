@@ -93,12 +93,19 @@ def list():
 
 def search_asset():
 
-    asst = input("Digit the name of the asset(Ex: btc-eur): ")
+    try:
+        asst = input("Digit the name of the asset(Ex: btc-eur): ")
 
-    #X_price = public_client.get_currencies()
+        #X_price = public_client.get_currencies()
 
-    X_price = public_client.get_product_ticker(asst)
-    print(X_price)
+        X_price = public_client.get_product_ticker(asst)
+
+    except:
+        print(Fore.RED + "\nERROR! - INVALID OPTION!")
+        search_asset()
+    else:
+
+        print(X_price)
 
 
     # for x in X_price:
@@ -119,14 +126,26 @@ def search_asset():
 
 def last_trades():
 
-    y = input("Digit the pair of the asset(Ex: BTC-EUR): ")
-    num_trades = int(input("Number of trades that you want to see? "))
+    try:
+        y = input("Digit the pair of the asset(Ex: BTC-EUR): ")
+        num_trades = int(input("Number of trades that you want to see? "))
 
-    lasttrades = public_client.get_product_trades(y)
+        lasttrades = public_client.get_product_trades(y)
 
-    print(f"\nThe last {num_trades} trades")
-    for s in range(num_trades):
-        print(next(lasttrades))
+    except:
+        print(Fore.RED + "\nERROR! - INVALID OPTION!")
+        last_trades()
+    else:
+
+        try:
+            print(f"\nThe last {num_trades} trades")
+            for s in range(num_trades):
+                print(next(lasttrades))
+        except:
+            print(Fore.RED + "\nERROR! - INVALID OPTION!")
+            last_trades()
+        else:
+            pass
 
 
 
