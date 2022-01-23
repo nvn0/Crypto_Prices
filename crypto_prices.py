@@ -3,8 +3,9 @@ import colorama
 from colorama import Back, Fore, Style
 import platform
 import os
-import sys
 import time
+#import sys
+
 
 
 
@@ -63,7 +64,7 @@ def Crypto_prices():
         if opc2 == "exit":
             print("A sair...")
         elif opc2 == "000":  # Secret command
-            sys.exit()
+            exit()
 
 
 
@@ -84,7 +85,7 @@ def list():
         if opc3 == "exit":
             print("A sair...")
         elif opc3 == "000":  # Secret command
-            sys.exit()
+            exit()
 
 
 
@@ -120,7 +121,7 @@ def search_asset():
         if opc4 == "exit":
             print("A sair...")
         elif opc4 == "000":  # Secret command
-            sys.exit()
+            exit()
 
 
 
@@ -159,7 +160,8 @@ def last_trades():
         if opc4 == "exit":
             print("A sair...")
         elif opc4 == "000":  # Secret command
-            sys.exit()
+            #sys.exit()
+            exit()
 
 
 
@@ -188,7 +190,7 @@ while opc != "exit":
         Crypto_prices()
     elif opc == "000": # Secret command
         os.system(clear_command)
-        sys.exit()
+        exit()
     elif opc == "2":
         os.system(clear_command)
         print("List of Cryptos")
