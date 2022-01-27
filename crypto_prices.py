@@ -63,6 +63,8 @@ def Crypto_prices():
 
         if opc2 == "exit":
             print("A sair...")
+        elif opc2 == "refresh" or opc2 == "r":
+            Crypto_prices()
         elif opc2 == "000":  # Secret command
             exit()
 
