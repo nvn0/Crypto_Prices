@@ -17,9 +17,14 @@ clear_command = "cls" if platform.system() == "Windows" else "clear"
 
 os.system(clear_command)
 
-public_client = cbpro.PublicClient()
+try:
+    public_client = cbpro.PublicClient()
 
-result = public_client.get_products()
+    result = public_client.get_products()
+except:
+    print(Fore.RED + "Error! - Looks like you are not connected to the internet...")
+    exit()
+
 
 # for row in result:
 #     print(row)
