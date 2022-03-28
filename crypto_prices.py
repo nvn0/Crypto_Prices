@@ -4,6 +4,7 @@ from colorama import Back, Fore, Style
 import platform
 import os
 import time
+import requests
 #import sys
 
 
@@ -49,6 +50,9 @@ def Crypto_prices():
     # EGLD_price = public_client.get_product_ticker('EGLD-EUR')
     # print (Fore.BLUE + "EGLD:",EGLD_price['price'], "€")
 
+    XMR_price = requests.get("https://api.kraken.com/0/public/Ticker?pair=XMREUR").json()['result']['XXMRZEUR']['c'][0]
+    print(Fore.YELLOW + "XMR:", str(XMR_price)[:6], "€")
+
     SOL_price = public_client.get_product_ticker('SOL-EUR')
     print(Fore.GREEN + "SOL:", SOL_price['price'], "€")
 
@@ -75,7 +79,7 @@ def Crypto_prices():
 
 
 
-def list():
+def list(): # option 2
 
 
     for row in result:
@@ -99,21 +103,31 @@ def list():
 
 
 
-def search_asset():
+def search_asset(): # option 3
 
     try:
-        asst = input("Digit the name of the asset(Ex: btc-eur): ")
-
+        asstc = input("Digit the name of the crypto asset(Ex: btc): ")
+        asstf = input("Digit the name of the fiat asset(Ex: usd): ")
         #X_price = public_client.get_currencies()
+
+        asst = '-'.join([asstc, asstf])
+
 
         X_price = public_client.get_product_ticker(asst)
 
+        asst2 = ''.join([asstc, asstf]).upper()
+
+
+        Z_price = requests.get(f"https://api.kraken.com/0/public/Ticker?pair={asst2}").json()['result']
+
+
     except:
+
         print(Fore.RED + "\nERROR! - INVALID OPTION!")
         search_asset()
     else:
-
-        print(X_price)
+        print("Coinbase:\n", X_price)
+        print("Kraken:\n", Z_price)
 
 
     # for x in X_price:
@@ -127,12 +141,14 @@ def search_asset():
 
         if opc4 == "exit":
             print("A sair...")
+        elif opc4 == "a" or "r":
+            search_asset()
         elif opc4 == "000":  # Secret command
             exit()
 
 
 
-def last_trades():
+def last_trades(): # option 4
 
     try:
         y = input("Digit the pair of the asset(Ex: BTC-EUR): ")
