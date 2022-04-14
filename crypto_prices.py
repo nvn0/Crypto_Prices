@@ -6,8 +6,7 @@ import os
 import time
 import requests
 #import sys
-
-
+from plyer import notification
 
 
 
@@ -188,6 +187,23 @@ def last_trades(): # option 4
 
 
 
+def price_notify(coin, t2):
+
+    while True:
+        time.sleep(t2)
+        c_price = public_client.get_product_ticker(f'{coin}')
+
+        notification.notify(
+            title=f"{coin}:",
+            message=f"{c_price['price']} €",
+            app_icon="",
+            timeout=10,
+        )
+
+
+
+
+
 
 opc = ""
 while opc != "exit":
@@ -201,6 +217,7 @@ while opc != "exit":
     print("  [2] - List of assets")
     print("  [3] - Search an asset")
     print("  [4] - Last trades")
+    print("  [5] - Notify prices")
     print("  [exit]")
     print("===================================================")
 
@@ -226,6 +243,13 @@ while opc != "exit":
         os.system(clear_command)
         print("Last trades")
         last_trades()
+    elif opc == "5":
+        os.system(clear_command)
+        print("Set a notification")
+        coin = input("What coin you want to be notify about?(Ex: BTC-EUR)")
+        t = int(input("Insert the time interval for the reminder (minutes): "))
+        t2 = t * 60
+        price_notify(coin, t2)
     elif opc == "exit":
         print("\nA sair...")
     else:
