@@ -246,10 +246,14 @@ while opc != "exit":
     elif opc == "5":
         os.system(clear_command)
         print("Set a notification")
-        coin = input("What coin you want to be notify about?(Ex: BTC-EUR)")
-        t = int(input("Insert the time interval for the reminder (minutes): "))
-        t2 = t * 60
-        price_notify(coin, t2)
+        try:
+            coin = input("What coin you want to be notify about?(Ex: BTC-EUR)")
+            t = int(input("Insert the time interval for the reminder (minutes): "))
+            t2 = t * 60
+        except:
+            print(Fore.RED + "\nERROR! - INVALID INPUTS!")
+        else:
+            price_notify(coin, t2)
     elif opc == "exit":
         print("\nA sair...")
     else:
