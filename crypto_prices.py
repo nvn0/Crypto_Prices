@@ -71,6 +71,7 @@ def Crypto_prices():
 
         if opc2 == "exit":
             print("A sair...")
+            break
         elif opc2 == "refresh" or opc2 == "r":
             Crypto_prices()
         elif opc2 == "000":  # Secret command
@@ -181,6 +182,8 @@ def last_trades(): # option 4
 
         if opc4 == "exit":
             print("A sair...")
+        elif opc4 == "refresh" or opc4 == "r":
+            last_trades()
         elif opc4 == "000":  # Secret command
             #sys.exit()
             exit()
