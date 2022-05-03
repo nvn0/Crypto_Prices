@@ -166,7 +166,7 @@ def last_trades(): # option 4
             for s in range(num_trades):
                 print(next(lasttrades))
         except:
-            print(Fore.RED + "\nERROR! - INVALID OPTION!")
+            print(Fore.RED + "\nERROR! - INVALID OPTION! (2)")
             last_trades()
         else:
             pass
@@ -205,62 +205,62 @@ def price_notify(coin, t2):
 
 
 
+if __name__ == '__main__':
 
 
-
-opc = ""
-while opc != "exit":
-    os.system(clear_command)
-
-
-    print("\n===================================================")
-    print("                     Crypto Prices")
-    print("===================================================")
-    print("  [1] - Show Crypto Prices")
-    print("  [2] - List of assets")
-    print("  [3] - Search an asset")
-    print("  [4] - Last trades")
-    print("  [5] - Notify prices")
-    print("  [exit]")
-    print("===================================================")
-
-
-    opc = input("Choose an option: ")
-
-    if opc == "1":
+    opc = ""
+    while opc != "exit":
         os.system(clear_command)
-        print("\nCrypto Prices:")
-        Crypto_prices()
-    elif opc == "000": # Secret command
-        os.system(clear_command)
-        exit()
-    elif opc == "2":
-        os.system(clear_command)
-        print("List of Cryptos")
-        list()
-    elif opc == "3":
-        os.system(clear_command)
-        print("Search an asset")
-        search_asset()
-    elif opc == "4":
-        os.system(clear_command)
-        print("Last trades")
-        last_trades()
-    elif opc == "5":
-        os.system(clear_command)
-        print("Set a notification")
-        try:
-            coin = input("What coin you want to be notify about?(Ex: BTC-EUR)")
-            t = int(input("Insert the time interval for the reminder (minutes): "))
-            t2 = t * 60
-        except:
-            print(Fore.RED + "\nERROR! - INVALID INPUTS!")
+
+
+        print("\n===================================================")
+        print("                     Crypto Prices")
+        print("===================================================")
+        print("  [1] - Show Crypto Prices")
+        print("  [2] - List of assets")
+        print("  [3] - Search an asset")
+        print("  [4] - Last trades")
+        print("  [5] - Notify prices")
+        print("  [exit]")
+        print("===================================================")
+
+
+        opc = input("Choose an option: ")
+
+        if opc == "1":
+            os.system(clear_command)
+            print("\nCrypto Prices:")
+            Crypto_prices()
+        elif opc == "000": # Secret command
+            os.system(clear_command)
+            exit()
+        elif opc == "2":
+            os.system(clear_command)
+            print("List of Cryptos")
+            list()
+        elif opc == "3":
+            os.system(clear_command)
+            print("Search an asset")
+            search_asset()
+        elif opc == "4":
+            os.system(clear_command)
+            print("Last trades")
+            last_trades()
+        elif opc == "5":
+            os.system(clear_command)
+            print("Set a notification")
+            try:
+                coin = input("What coin you want to be notify about?(Ex: BTC-EUR)")
+                t = int(input("Insert the time interval for the reminder (minutes): "))
+                t2 = t * 60
+            except:
+                print(Fore.RED + "\nERROR! - INVALID INPUTS!")
+            else:
+                price_notify(coin, t2)
+        elif opc == "exit":
+            print("\nA sair...")
         else:
-            price_notify(coin, t2)
-    elif opc == "exit":
-        print("\nA sair...")
-    else:
-        print(Fore.RED + "\nERROR! - INVALID OPTION!")
+            print(Fore.RED + "\nERROR! - INVALID OPTION!")
 
 
 
