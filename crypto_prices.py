@@ -1,4 +1,4 @@
-import cbpro
+#import cbpro # pip install cbpro
 import colorama
 from colorama import Back, Fore, Style
 import platform
@@ -6,7 +6,7 @@ import os
 import time
 import requests
 #import sys
-from plyer import notification
+#from plyer import notification
 
 
 
@@ -17,13 +17,14 @@ clear_command = "cls" if platform.system() == "Windows" else "clear"
 
 os.system(clear_command)
 
-try:
-    public_client = cbpro.PublicClient()
 
-    result = public_client.get_products()
-except:
-    print(Fore.RED + "Error! - Looks like you are not connected to the internet...")
-    exit()
+#try:
+#    public_client = cbpro.PublicClient()
+#
+#    result = public_client.get_products()
+#except:
+#    print(Fore.RED + "Error! - Looks like you are not connected to the internet...")
+#    exit()
 
 
 # for row in result:
@@ -73,11 +74,37 @@ def Crypto_prices():
             print("A sair...")
             break
         elif opc2 == "refresh" or opc2 == "r":
+            os.system(clear_command)
             Crypto_prices()
         elif opc2 == "000":  # Secret command
             exit()
 
 
+def crypto_pricesV2():
+    #print(requests.get("https://api.kraken.com/0/public/Ticker?pair=ZECEUR").json())
+    
+    BTC_price = requests.get("https://api.kraken.com/0/public/Ticker?pair=BTCEUR").json()['result']['XXBTZEUR']['c'][0]
+    print(Fore.YELLOW + "BTC:", str(BTC_price)[:8], "€")
+    
+    #XMR_price = requests.get("https://api.kraken.com/0/public/Ticker?pair=XMREUR").json()['result']['XXMRZEUR']['c'][0]
+    #print(Fore.YELLOW + "XMR:", str(XMR_price)[:6], "€")
+
+    ZEC_price = requests.get("https://api.kraken.com/0/public/Ticker?pair=ZECEUR").json()['result']['XZECZEUR']['c'][0]
+    print(Fore.YELLOW + "ZEC:", str(ZEC_price)[:6], "€")
+
+
+    opc2 = ""
+    while opc2 != "exit":
+
+        opc2 = input("\n>_: ")
+
+        if opc2 == "exit":
+            print("A sair...")
+            break
+        elif opc2 == "refresh" or opc2 == "r":
+            crypto_pricesV2()
+        elif opc2 == "000":  # Secret command
+            exit()
 
 def list(): # option 2
 
@@ -210,7 +237,7 @@ if __name__ == '__main__':
 
     opc = ""
     while opc != "exit":
-        os.system(clear_command)
+        #os.system(clear_command)
 
 
         print("\n===================================================")
@@ -230,7 +257,8 @@ if __name__ == '__main__':
         if opc == "1":
             os.system(clear_command)
             print("\nCrypto Prices:")
-            Crypto_prices()
+            #Crypto_prices()
+            crypto_pricesV2()
         elif opc == "000": # Secret command
             os.system(clear_command)
             exit()
